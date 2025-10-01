@@ -66,7 +66,7 @@ async function salvar(e) {
 
         if (resposta.ok) {
             alert("Aluno atualizado com sucesso!");
-            // redireciona de volta para a lista
+           
             window.location.href = "index.html";
         } else {
             console.error("Erro na requisição:", resposta.status);
@@ -80,5 +80,5 @@ async function salvar(e) {
 
 formAluno.addEventListener("submit", salvar);
 
-// Carrega os dados do aluno assim que a página abre
+
 carregarAluno();

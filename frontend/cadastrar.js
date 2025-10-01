@@ -1,8 +1,8 @@
 const API = "http://localhost:3000/alunos"
 
 const inputNome = document.getElementById("nome")
-const inputCpf = document.getElementById("cpf")   // certifique-se: no HTML o id é "cpf"
-const inputCep = document.getElementById("cep")   // idem: no HTML o id é "cep"
+const inputCpf = document.getElementById("cpf")   
+const inputCep = document.getElementById("cep")   
 const inputUf = document.getElementById("uf")
 const inputRua = document.getElementById("rua")
 const inputNumero = document.getElementById("numero")
@@ -21,7 +21,7 @@ async function salvar(e) {
   const numero = inputNumero.value.trim();
   const complemento = inputComplemento.value.trim();
 
-  // validação simples
+
   if (!nome || !cpf || !numero) {
     alert("Por gentileza, preencha os campos obrigatórios (nome, cpf e número).");
     return;
@@ -41,8 +41,8 @@ async function salvar(e) {
       const dados = await requisicao.json();
       console.log("Aluno salvo com sucesso:", dados);
       alert("Aluno cadastrado com sucesso!");
-      formAluno.reset(); // limpa o formulário
-    } else {
+      formAluno.reset();
+    } else { 
       console.error("Erro na requisição:", requisicao.status);
       alert("Erro ao cadastrar aluno. Código: " + requisicao.status);
     }

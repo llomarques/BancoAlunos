@@ -188,19 +188,38 @@ async function carregarTabela() {
                 <td><button>
                 <a href="edit.HTML?id=${a.id}">Editar</a>
                 </button></td>
-                <td><button>Excluir</button></td>
+                <td><button onclick="excluir(${a.id})">Excluir</button></td>
                 </tr>`
-
     ).join("");
     //},3000)
   } catch (error) {
     console.error(error.message);
   }
-// 
-
 
 }
 
+async function excluir(id) {
+  if (!confirm("Confirma a exclusão deste aluno?")) {
+    return;
+  }
+  try {
+    const resposta = await fetch(`${API}/${id}`, {
+      method: "DELETE"
+    });
+    console.log('Status da resposta:', resposta.status);
+    const texto = await resposta.text();
+    console.log('Resposta do servidor:', texto);
+    if (resposta.status === 204) {
+      alert("Aluno excluído com sucesso.");
+      carregarTabela();
+    } else {
+      alert("Erro ao excluir aluno. Código: " + resposta.status + "\n" + texto);
+    } 
+  } catch (error) {
+    console.error("Erro no fetch:", error);
+    alert("Erro de conexão com o servidor.");
+  }
+}
 
 
 carregarTabela();

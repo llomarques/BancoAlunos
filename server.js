@@ -2,7 +2,6 @@ const express = require("express");
 const mysql = require("mysql2/promise");
 const cors = require("cors");
 
-// cria aplicação
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -95,6 +94,26 @@ app.put("/alunos/:id", async (req,res) =>{
         return res.status(500).json({erro : "Erro ao atualizar alunos"});
     }
 })
+
+
+
+app.delete("/alunos/:id", async (req,res) =>{
+    const id = req.params.id;
+    try {
+        const [resultado] = await conexao.execute(`DELETE FROM alunos WHERE id = ?`, [id])
+        console.log(resultado)
+        if(resultado.affectedRows === 0){
+            return res.status(404).json({msg : "Aluno nao encontrado"})
+        }
+        res.status(204).send();
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({erro : "Erro ao excluir alunos"});
+    }
+
+})
+
+
 
 
 
