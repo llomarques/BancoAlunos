@@ -1,0 +1,12 @@
+
+button{
+    background-color: plum;
+}
+
+input[type="text"] {
+    display: block;
+    margin-bottom: 15px;
+    width: 45%;
+    box-sizing: border-box;
+}
+
